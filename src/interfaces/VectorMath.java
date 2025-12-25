@@ -1,5 +1,5 @@
 package interfaces;
-import method_classes.VectorMathImpl;
+import logic_classes.VectorMathImpl;
 
 public interface VectorMath {
 

@@ -1,7 +1,6 @@
-package method_classes;
+package logic_classes;
 
 import classes.Planet;
-import classes.Vec;
 import interfaces.PlanetPhysics;
 import interfaces.Vector;
 import interfaces.VectorMath;

@@ -1,4 +1,4 @@
-package method_classes;
+package logic_classes;
 
 import classes.Vec;
 import interfaces.Vector;

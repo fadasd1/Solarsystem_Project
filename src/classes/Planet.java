@@ -7,14 +7,35 @@ public class Planet {
 
 	private String name = "default"; // NAME is a primary key 😠
 	private double mass = 0;
+	private double radius = 0;
 	private Vector posVector = new Vec();
+	private Vector accelVector = new Vec();
 	private Vector velVector = new Vec();
 
-	public Planet(String name, double mass, Vector posVector, Vector velVector) {
+
+	public Planet(String name, double mass, double radius, Vector posVector, Vector accelVector, Vector velVector) {
 		this.name = name;
 		this.mass = mass;
+		this.radius = radius;
 		this.posVector = posVector;
+		this.accelVector = accelVector;
 		this.velVector = velVector;
+	}
+
+	public Vector getAccelVector() {
+		return accelVector;
+	}
+
+	public void setAccelVector(Vector accelVector) {
+		this.accelVector = accelVector;
+	}
+
+	public double getRadius() {
+		return radius;
+	}
+
+	public void setRadius(double radius) {
+		this.radius = radius;
 	}
 
 	public String getName() {
