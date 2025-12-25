@@ -1,13 +1,16 @@
 package classes;
 
-public class CelestialBody {
+
+import interfaces.Vector;
+
+public class Planet {
 
 	private String name = "default"; // NAME is a primary key 😠
 	private double mass = 0;
-	private Vec posVector = new Vec();
-	private Vec velVector = new Vec();
+	private Vector posVector = new Vec();
+	private Vector velVector = new Vec();
 
-	public CelestialBody(String name, double mass, Vec posVector, Vec velVector) {
+	public Planet(String name, double mass, Vector posVector, Vector velVector) {
 		this.name = name;
 		this.mass = mass;
 		this.posVector = posVector;
@@ -30,19 +33,19 @@ public class CelestialBody {
 		this.mass = mass;
 	}
 
-	public Vec getPosVector() {
+	public Vector getPosVector() {
 		return posVector;
 	}
 
-	public void setPosVector(Vec posVector) {
+	public void setPosVector(Vector posVector) {
 		this.posVector = posVector;
 	}
 
-	public Vec getVelVector() {
+	public Vector getVelVector() {
 		return velVector;
 	}
 
-	public void setVelVector(Vec velVector) {
+	public void setVelVector(Vector velVector) {
 		this.velVector = velVector;
 	}
 
@@ -55,7 +58,7 @@ public class CelestialBody {
 	public boolean equals(Object o) {
 		if(o == this) return true;
 		if(o == null || this.getClass() != o.getClass()) return false;
-		CelestialBody other = (CelestialBody) o;
+		Planet other = (Planet) o;
 
 		return other.name.equals(name);
 	}
