@@ -6,9 +6,9 @@ public interface Vector {
 	double getY();
 	double getZ();
 
-	void setX();
-	void setY();
-	void setZ();
+	void setX(double x);
+	void setY(double y);
+	void setZ(double z);
 
 	boolean equals(Object o);
 	int hashCode();

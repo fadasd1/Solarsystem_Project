@@ -18,6 +18,7 @@ public class Vec implements Vector {
 
 	public Vec(){}
 
+	@Override
 	public double getX() {
 		return x;
 	}
@@ -26,6 +27,7 @@ public class Vec implements Vector {
 		this.x = x;
 	}
 
+	@Override
 	public double getY() {
 		return y;
 	}
@@ -34,24 +36,11 @@ public class Vec implements Vector {
 		this.y = y;
 	}
 
+	@Override
 	public double getZ() {
 		return z;
 	}
 
-	@Override
-	public void setX() {
-
-	}
-
-	@Override
-	public void setY() {
-
-	}
-
-	@Override
-	public void setZ() {
-
-	}
 
 	public void setZ(double z) {
 		this.z = z;

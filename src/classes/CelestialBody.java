@@ -1,13 +1,13 @@
 package classes;
 
-public class Planet {
+public class CelestialBody {
 
 	private String name = "default"; // NAME is a primary key 😠
 	private double mass = 0;
 	private Vec posVector = new Vec();
 	private Vec velVector = new Vec();
 
-	public Planet(String name, double mass, Vec posVector, Vec velVector) {
+	public CelestialBody(String name, double mass, Vec posVector, Vec velVector) {
 		this.name = name;
 		this.mass = mass;
 		this.posVector = posVector;
@@ -55,7 +55,7 @@ public class Planet {
 	public boolean equals(Object o) {
 		if(o == this) return true;
 		if(o == null || this.getClass() != o.getClass()) return false;
-		Planet other = (Planet) o;
+		CelestialBody other = (CelestialBody) o;
 
 		return other.name.equals(name);
 	}
