@@ -2,6 +2,7 @@ package classes;
 
 
 import interfaces.Vector;
+import javafx.scene.paint.Color;
 
 public class Planet {
 
@@ -9,25 +10,25 @@ public class Planet {
 	private double mass = 0;
 	private double radius = 0;
 	private Vector posVector = new Vec();
-	private Vector accelVector = new Vec();
 	private Vector velVector = new Vec();
+	private Color color;
 
 
-	public Planet(String name, double mass, double radius, Vector posVector, Vector accelVector, Vector velVector) {
+	public Planet(String name, double mass, double radius, Vector posVector, Vector velVector, Color color) {
 		this.name = name;
 		this.mass = mass;
 		this.radius = radius;
 		this.posVector = posVector;
-		this.accelVector = accelVector;
 		this.velVector = velVector;
+		this.color = color;
 	}
 
-	public Vector getAccelVector() {
-		return accelVector;
+	public Color getColor() {
+		return color;
 	}
 
-	public void setAccelVector(Vector accelVector) {
-		this.accelVector = accelVector;
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
 	public double getRadius() {
