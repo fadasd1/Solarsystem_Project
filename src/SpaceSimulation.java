@@ -5,7 +5,11 @@ import classes.SimulationContainer;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.*;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.PhongMaterial;
+import javafx.scene.shape.CullFace;
+import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.scene.PointLight;
@@ -21,7 +25,6 @@ public class SpaceSimulation extends Application {
 	private Group root;
 	private Group cameraPivot;
 	private PerspectiveCamera camera;
-
 	private Rotate rotateX = new Rotate(0, Rotate.X_AXIS);
 	private Rotate rotateY = new Rotate(0, Rotate.Y_AXIS);
 	private double anchorX, anchorY;
@@ -37,7 +40,8 @@ public class SpaceSimulation extends Application {
 		setupMouseControls(scene);
 		setupKeyboardControls(scene);
 		setupLights();
-		setupPlanetsAccurateDistance(); //Close = closer to the sun, radii in general upscaled to make certain planets visible
+		setupPlanets();
+		setupStars();
 		startSimulationLoop();
 
 		primaryStage.setScene(scene);
@@ -46,6 +50,14 @@ public class SpaceSimulation extends Application {
 	}
 
 
+	private void setupStars() {
+		Sphere starField = new Sphere(1e5);
+		PhongMaterial mat = new PhongMaterial();
+		mat.setDiffuseMap(new Image("textures/starMap.png"));
+		starField.setMaterial(mat);
+		starField.setCullFace(CullFace.FRONT);
+		root.getChildren().add(starField);
+	}
 	private void setupCamera(Scene scene) {
 		cameraPivot = new Group();
 		camera = new PerspectiveCamera(true);
@@ -101,8 +113,8 @@ public class SpaceSimulation extends Application {
 		}.start();
 	}
 
-	private void setupPlanetsAccurateDistance() {
-		setupSolarSystemAccurate();
+	private void setupPlanets() {
+		setupSolarSystem();
 		planetViews = new ArrayList<>(simulationContainer.getPlanets().size());
 
 		for(Planet p : simulationContainer.getPlanets()) {
@@ -112,7 +124,7 @@ public class SpaceSimulation extends Application {
 		}
 	}
 
-	private void setupSolarSystemAccurate() {
+	private void setupSolarSystem() {
 		simulationContainer = new SimulationContainer();
 		simulationContainer.addPlanet(PlanetFactory.createEarth());
 		simulationContainer.addPlanet(PlanetFactory.createSun());
@@ -125,29 +137,7 @@ public class SpaceSimulation extends Application {
 		simulationContainer.addPlanet(PlanetFactory.createVenus());
 	}
 
-	private void setupPlanetsClose() {
-		setupSolarSystemClose();
-		planetViews = new ArrayList<>(simulationContainer.getPlanets().size());
 
-		for(Planet p : simulationContainer.getPlanets()) {
-			PlanetView pv = new PlanetView(p, p.getColor());
-			planetViews.add(pv);
-			root.getChildren().add(pv.getNode());
-		}
-	}
-
-	private void setupSolarSystemClose() {
-		simulationContainer = new SimulationContainer();
-		simulationContainer.addPlanet(PlanetFactory.createEarthClose());
-		simulationContainer.addPlanet(PlanetFactory.createSun());
-		simulationContainer.addPlanet(PlanetFactory.createJupiterClose());
-		simulationContainer.addPlanet(PlanetFactory.createMarsClose());
-		simulationContainer.addPlanet(PlanetFactory.createMercuryClose());
-		simulationContainer.addPlanet(PlanetFactory.createNeptuneClose());
-		simulationContainer.addPlanet(PlanetFactory.createUranusClose());
-		simulationContainer.addPlanet(PlanetFactory.createSaturnClose());
-		simulationContainer.addPlanet(PlanetFactory.createVenusClose());
-	}
 
 	private void setupMouseControls(Scene scene) {
 		// Add the rotates to the camera pivot once (after creating pivot)
