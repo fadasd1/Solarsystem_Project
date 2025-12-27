@@ -13,6 +13,8 @@ import javafx.scene.PointLight;
 import java.util.ArrayList;
 import java.util.List;
 
+import static classes.Constants.*;
+
 public class SpaceSimulation extends Application {
 	private SimulationContainer simulationContainer;
 	private List<PlanetView> planetViews;
@@ -75,19 +77,24 @@ public class SpaceSimulation extends Application {
 	private void startSimulationLoop() {
 		new AnimationTimer() {
 			private long lastTime = 0;
-
+			private double accumulator = 0;
 			@Override
 			public void handle(long now) {
 				if(lastTime == 0) {
 					lastTime = now;
 					return;
 				}
-				double timeScale = 1000000;
-				double dt = (now - lastTime) / 1e9 * timeScale;
+				double dt = (now - lastTime) * NS_TO_S;
+				dt = Math.min(dt, 0.25);
 				lastTime = now;
-				simulationContainer.update(dt);
+				accumulator += dt * S_TO_30D;
 
-				for(PlanetView pv : planetViews) {
+				while(accumulator > DEFAULT_DT) {
+					simulationContainer.update(DEFAULT_DT);
+
+					accumulator -= DEFAULT_DT;
+				}
+				for (PlanetView pv : planetViews) {
 					pv.update();
 				}
 			}
