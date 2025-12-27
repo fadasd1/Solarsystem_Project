@@ -116,5 +116,16 @@ public class PlanetFactory {
 		);
 	}
 
+	public static Planet createBlackHole() {
+		return new Planet(
+				"Black Hole",
+				1.989e33,
+				696340,
+				new Vec(1.5e11 * 5, 0, 0),
+				new Vec(0, 0, 0),
+				Color.ANTIQUEWHITE
+		);
+	}
+
 
 }

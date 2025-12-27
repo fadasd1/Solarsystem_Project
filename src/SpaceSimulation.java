@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.scene.PointLight;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static classes.Constants.*;
@@ -22,6 +23,7 @@ import static classes.Constants.*;
 public class SpaceSimulation extends Application {
 	private SimulationContainer simulationContainer;
 	private List<PlanetView> planetViews;
+	private List<Planet> extraPlanets = new ArrayList<>();
 	private Group root;
 	private Group cameraPivot;
 	private PerspectiveCamera camera;
@@ -40,6 +42,9 @@ public class SpaceSimulation extends Application {
 		setupMouseControls(scene);
 		setupKeyboardControls(scene);
 		setupLights();
+
+		//extraPlanets.add(PlanetFactory.createBlackHole());
+
 		setupPlanets();
 		setupStars();
 		startSimulationLoop();
@@ -123,9 +128,9 @@ public class SpaceSimulation extends Application {
 			root.getChildren().add(pv.getNode());
 		}
 	}
-
 	private void setupSolarSystem() {
 		simulationContainer = new SimulationContainer();
+		for(Planet p : extraPlanets) simulationContainer.addPlanet(p);
 		simulationContainer.addPlanet(PlanetFactory.createEarth());
 		simulationContainer.addPlanet(PlanetFactory.createSun());
 		simulationContainer.addPlanet(PlanetFactory.createJupiter());
@@ -136,7 +141,6 @@ public class SpaceSimulation extends Application {
 		simulationContainer.addPlanet(PlanetFactory.createSaturn());
 		simulationContainer.addPlanet(PlanetFactory.createVenus());
 	}
-
 
 
 	private void setupMouseControls(Scene scene) {
