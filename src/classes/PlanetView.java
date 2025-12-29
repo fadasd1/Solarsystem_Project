@@ -1,5 +1,6 @@
 package classes;
 
+import interfaces.Vector;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Sphere;
 import javafx.scene.paint.Color;
@@ -23,8 +24,9 @@ public class PlanetView {
 	}
 
 	public void update() {
-		sphere.setTranslateX(planet.getPosVector().getX() * PLANET_POSITION_SCALAR);
-		sphere.setTranslateY(planet.getPosVector().getY() * PLANET_POSITION_SCALAR);
-		sphere.setTranslateZ(planet.getPosVector().getZ() * PLANET_POSITION_SCALAR);
+		Vector posVector = planet.getPosVector();
+		sphere.setTranslateX(posVector.getX() * PLANET_POSITION_SCALAR);
+		sphere.setTranslateY(posVector.getY() * PLANET_POSITION_SCALAR);
+		sphere.setTranslateZ(posVector.getZ() * PLANET_POSITION_SCALAR);
 	}
 }
