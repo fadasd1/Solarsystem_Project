@@ -1,18 +1,40 @@
 package classes;
 
-
 import interfaces.Vector;
 
-
+/**
+ * Represents a celestial body with mass, radius, position, and velocity.
+ * <p>
+ * Planets are uniquely identified by their name. This class provides
+ * getters and setters for physical properties and implements {@link #equals(Object)}
+ * and {@link #hashCode()} based on the name.
+ */
 public class Planet {
 
-	private String name; // NAME is a primary key
+	/** Unique name of the planet. */
+	private String name;
+
+	/** Mass in kilograms. */
 	private double mass;
+
+	/** Radius in meters. */
 	private double radius;
+
+	/** Current position vector. */
 	private Vector posVector;
+
+	/** Current velocity vector. */
 	private Vector velVector;
 
-
+	/**
+	 * Constructs a new planet with specified properties.
+	 *
+	 * @param name      unique name
+	 * @param mass      mass in kilograms
+	 * @param radius    radius in meters
+	 * @param posVector initial position
+	 * @param velVector initial velocity
+	 */
 	public Planet(String name, double mass, double radius, Vector posVector, Vector velVector) {
 		this.name = name;
 		this.mass = mass;
@@ -21,45 +43,35 @@ public class Planet {
 		this.velVector = velVector;
 	}
 
-	public double getRadius() {
-		return radius;
-	}
+	/** Returns the planet's radius in meters. */
+	public double getRadius() { return radius; }
 
-	public void setRadius(double radius) {
-		this.radius = radius;
-	}
+	/** Sets the planet's radius. */
+	public void setRadius(double radius) { this.radius = radius; }
 
-	public String getName() {
-		return name;
-	}
+	/** Returns the planet's unique name. */
+	public String getName() { return name; }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	/** Sets the planet's unique name. */
+	public void setName(String name) { this.name = name; }
 
-	public double getMass() {
-		return mass;
-	}
+	/** Returns the planet's mass in kilograms. */
+	public double getMass() { return mass; }
 
-	public void setMass(double mass) {
-		this.mass = mass;
-	}
+	/** Sets the planet's mass. */
+	public void setMass(double mass) { this.mass = mass; }
 
-	public Vector getPosVector() {
-		return posVector;
-	}
+	/** Returns the current position vector. */
+	public Vector getPosVector() { return posVector; }
 
-	public void setPosVector(Vector posVector) {
-		this.posVector = posVector;
-	}
+	/** Sets the current position vector. */
+	public void setPosVector(Vector posVector) { this.posVector = posVector; }
 
-	public Vector getVelVector() {
-		return velVector;
-	}
+	/** Returns the current velocity vector. */
+	public Vector getVelVector() { return velVector; }
 
-	public void setVelVector(Vector velVector) {
-		this.velVector = velVector;
-	}
+	/** Sets the current velocity vector. */
+	public void setVelVector(Vector velVector) { this.velVector = velVector; }
 
 	@Override
 	public int hashCode() {
@@ -68,10 +80,9 @@ public class Planet {
 
 	@Override
 	public boolean equals(Object o) {
-		if(o == this) return true;
-		if(o == null || this.getClass() != o.getClass()) return false;
+		if (o == this) return true;
+		if (o == null || this.getClass() != o.getClass()) return false;
 		Planet other = (Planet) o;
-
 		return other.name.equals(name);
 	}
 
@@ -84,5 +95,4 @@ public class Planet {
 				", velVector=" + velVector +
 				'}';
 	}
-
 }

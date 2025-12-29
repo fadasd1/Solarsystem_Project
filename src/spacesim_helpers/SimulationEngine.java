@@ -7,17 +7,20 @@ import interfaces.PlanetPhysics;
 import javafx.animation.AnimationTimer;
 import logic_classes.PlanetPhysicsImpl;
 
-
 import static constants.Constants.*;
 
+/**
+ * Runs the simulation for a planetary system.
+ * <p>
+ * Manages a {@link PlanetContainer} and updates planet physics and visual positions
+ * in real-time using an {@link AnimationTimer}.
+ */
 public class SimulationEngine {
 
+	/** Container holding planets and their visual representations. */
 	private PlanetContainer pc;
 
-	public SimulationEngine(PlanetContainer pc) {
-		this.pc = pc;
-	}
-
+	/** Animation loop driving physics and visual updates. */
 	private final AnimationTimer timer = new AnimationTimer() {
 		long last = 0;
 		double accumulator = 0;
@@ -40,30 +43,46 @@ public class SimulationEngine {
 		}
 	};
 
+	/** Physics engine for updating planet states. */
+	private final PlanetPhysics pp = PlanetPhysicsImpl.getInstance();
+
+	/**
+	 * Creates a simulation engine for the given container.
+	 *
+	 * @param pc container holding planets and views
+	 */
+	public SimulationEngine(PlanetContainer pc) {
+		this.pc = pc;
+	}
+
+	/**
+	 * Adds a planet to the simulation.
+	 *
+	 * @param p the planet to add
+	 */
 	public void addPlanet(Planet p) {
 		pc.getPlanets().add(p);
 	}
 
-	PlanetPhysics pp = PlanetPhysicsImpl.getInstance();
-
+	/** Updates planetary physics for one time step. */
 	private void physicsStep() {
 		pp.updatePhysics(DEFAULT_DT, pc.getPlanets());
 	}
 
+	/** Updates the positions of all planet views. */
 	private void visualStep() {
-		for(PlanetView pv : pc.getPlanetViews()) {
+		for (PlanetView pv : pc.getPlanetViews()) {
 			pv.update();
 		}
 	}
 
+	/** Returns the container managed by this engine. */
 	public PlanetContainer getPc() {
 		return pc;
 	}
 
+	/** Starts the simulation loop. */
 	public void start() {
 		timer.start();
 	}
 }
-
-
-

@@ -4,6 +4,10 @@ import javafx.scene.Scene;
 
 import static constants.CameraConstants.*;
 
+/**
+ * Handles user input for controlling the camera in a 3D JavaFX scene.
+ * Supports mouse rotation, scroll zoom, and keyboard panning and reset.
+ */
 public class InputController {
 
 	private static double anchorX;
@@ -11,6 +15,16 @@ public class InputController {
 	private static double anchorAngleX;
 	private static double anchorAngleY;
 
+	/**
+	 * Binds mouse and keyboard events to the given camera.
+	 *
+	 * Mouse drag rotates the camera based on movement relative to press anchor.
+	 * Scroll zooms in/out.
+	 * Keyboard WASD pans the camera, R resets it.
+	 *
+	 * @param scene  the JavaFX scene to bind input events to
+	 * @param camera the camera controller to manipulate
+	 */
 	public static void bind(Scene scene, CameraController camera) {
 
 		scene.setOnScroll(e ->
@@ -41,5 +55,4 @@ public class InputController {
 			}
 		});
 	}
-
 }
