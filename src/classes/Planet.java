@@ -2,33 +2,23 @@ package classes;
 
 
 import interfaces.Vector;
-import javafx.scene.paint.Color;
+
 
 public class Planet {
 
-	private String name = "default"; // NAME is a primary key 😠
-	private double mass = 0;
-	private double radius = 0;
-	private Vector posVector = new Vec();
-	private Vector velVector = new Vec();
-	private Color color;
+	private String name; // NAME is a primary key
+	private double mass;
+	private double radius;
+	private Vector posVector;
+	private Vector velVector;
 
 
-	public Planet(String name, double mass, double radius, Vector posVector, Vector velVector, Color color) {
+	public Planet(String name, double mass, double radius, Vector posVector, Vector velVector) {
 		this.name = name;
 		this.mass = mass;
 		this.radius = radius;
 		this.posVector = posVector;
 		this.velVector = velVector;
-		this.color = color;
-	}
-
-	public Color getColor() {
-		return color;
-	}
-
-	public void setColor(Color color) {
-		this.color = color;
 	}
 
 	public double getRadius() {
@@ -94,4 +84,5 @@ public class Planet {
 				", velVector=" + velVector +
 				'}';
 	}
+
 }

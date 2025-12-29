@@ -60,7 +60,7 @@ public class Vec implements Vector {
 
 	@Override
 	public String toString() {
-		return "PosVector{" +
+		return "Vec{" +
 				"x=" + x +
 				", y=" + y +
 				", z=" + z +

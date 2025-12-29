@@ -7,10 +7,9 @@ import interfaces.VectorMath;
 
 public class VectorMathImpl implements VectorMath {
 	//Singleton
-	private static VectorMath instance = null;
+	private static final VectorMath instance = new VectorMathImpl();
 	private VectorMathImpl(){}
 	public static VectorMath getInstance() {
-		if(instance == null) instance = new VectorMathImpl();
 		return instance;
 	}
 
@@ -50,7 +49,8 @@ public class VectorMathImpl implements VectorMath {
 	}
 
 	public Vector unitVector(Vector v) throws ArithmeticException {
-		double magnitude = magnitude(v); if(magnitude == 0) throw new ArithmeticException("Zero Magnitude");
+		double magnitude = magnitude(v);
+		if(magnitude == 0) throw new ArithmeticException("Zero Magnitude");
 		return new Vec(v.getX() / magnitude, v.getY() / magnitude, v.getZ() / magnitude);
 	}
 
@@ -66,8 +66,9 @@ public class VectorMathImpl implements VectorMath {
 	}
 
 	public double angleBetween(Vector v1, Vector v2) {
-		double cos = Math.acos((dotProductCoordinates(v1, v2)) / (magnitude(v1) * magnitude(v2)));
-		return Math.max(-1.0, Math.min(1.0, cos));
+		double cos = (dotProductCoordinates(v1, v2)) / (magnitude(v1) * magnitude(v2));
+		cos = Math.max(-1.0, Math.min(1.0, cos));
+		return Math.acos(cos);
 	}
 
 	public Vector vectorAlphaToBeta(Vector alpha, Vector beta) {

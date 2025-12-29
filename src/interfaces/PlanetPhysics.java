@@ -1,13 +1,11 @@
 package interfaces;
 
-import logic_classes.PlanetPhysicsImpl;
 import classes.Planet;
+
+import java.util.List;
 
 public interface PlanetPhysics {
 
-	static PlanetPhysics getInstance() {
-		return PlanetPhysicsImpl.getInstance();
-	}
 
 	Vector gravitationalForceVector(Planet p1, Planet p2) throws ArithmeticException;
 
@@ -17,5 +15,5 @@ public interface PlanetPhysics {
 
 	void positionUpdate(Planet p, double dt);
 
-	void planetUpdate(Planet p, Vector accel, double dt);
+	void updatePhysics(double dt, List<Planet> planets);
 }

@@ -1,11 +1,8 @@
 package interfaces;
-import logic_classes.VectorMathImpl;
 
 public interface VectorMath {
 
-	static VectorMath getInstance() {
-		return VectorMathImpl.getInstance();
-	}
+
 	Vector addVectors(Vector v1, Vector v2);
 
 	Vector subtractVectors(Vector v1, Vector v2);

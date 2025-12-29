@@ -2,17 +2,16 @@ package classes;
 
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Sphere;
-import classes.Planet;
 import javafx.scene.paint.Color;
-import static classes.Constants.PLANET_RADIUS_SCALAR;
-import static classes.Constants.PLANET_POSITION_SCALAR;
+import static constants.Constants.PLANET_RADIUS_SCALAR;
+import static constants.Constants.PLANET_POSITION_SCALAR;
 
 
 public class PlanetView {
 	private final Planet planet;
 	private final Sphere sphere;
 
-	public PlanetView(Planet planet, Color color) { //might have to troubleshoot here
+	public PlanetView(Planet planet, Color color) {
 		this.planet = planet;
 		this.sphere = new Sphere(planet.getRadius() * PLANET_RADIUS_SCALAR);
 		PhongMaterial mat = new PhongMaterial(color);
